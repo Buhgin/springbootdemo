@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Create category</title>
+</head>
+<body>
+<form action="#" th:action="@{/category-create}" th:object="${category}" method="post">
+    <label for="name">Name </label>
+    <input type="text" th:field="*{name}" id="name" placeholder="Name">
+    <input type="submit" value="Create Category">
+</form>
+</body>
+</html>

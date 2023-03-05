@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Value</title>
+</head>
+<body>
+<div th:switch="${values}">
+    <h2 th:case="null">No value found!</h2>
+    <div th:case="*">
+        <h2>values</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Product</th>
+                <th>Product_Id</th>
+                <th>Option</th>
+                <th>Option_Id</th>
+                <th>Value</th>
+
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr th:each="value : ${values}">
+                <td th:text="${value.id}"></td>
+                <td th:text="${value.product.name}"></td>
+                <td th:text="${value.product.id}"></td>
+                <td th:text="${value.option.name}"></td>
+                <td th:text="${value.option.id}"></td>
+                <td th:text="${value.name}"></td>
+
+                <td><a th:href="@{value-update/{id}(id=${value.id})}">Edit</a></td>
+                <td><a th:href="@{value-delete/{id}(id=${value.id})}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><a href="/value-create">Create value</a></p>
+</div>
+</body>
+</html>

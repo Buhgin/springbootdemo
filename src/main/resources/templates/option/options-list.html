@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Option</title>
+</head>
+<body>
+<div th:switch="${options}">
+    <h2 th:case="null">No options found!</h2>
+    <div th:case="*">
+        <h2>options</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Category_Id</th>
+
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr th:each="option : ${options}">
+                <td th:text="${option.id}"></td>
+                <td th:text="${option.name}"></td>
+                <td th:text="${option.category.name}"></td>
+                <td th:text="${option.category.id}"></td>
+                <td><a th:href="@{option-update/{id}(id=${option.id})}">Edit</a></td>
+                <td><a th:href="@{option-delete/{id}(id=${option.id})}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><a href="/option-create">Create option</a></p>
+</div>
+</body>
+</html>

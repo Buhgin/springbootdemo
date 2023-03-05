@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Value</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+
+</head>
+<form action="#" th:action="@{/product-value}" th:objects="${product}" method="get">
+   <label for="name">Name</label>
+    <input readonly type="text" th:field="${product.name}" id="name" placeholder="Name">
+    <br/>
+    <label for="price">Price</label>
+    <input readonly type="number" th:field="${product.price}" id="price" placeholder="Price">
+    <br/>
+</form>
+
+
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <div th:switch="${values}">
+                <h2 th:case="null">No values found!</h2>
+                <div th:case="*">
+                    <h2>Option</h2>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Options</th>
+                            <th>Value</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="value : ${values}">
+                            <td th:text="${value.option.name}"></td>
+                            <td th:text="${value.name}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

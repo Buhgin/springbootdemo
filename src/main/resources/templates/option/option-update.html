@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Update option</title>
+</head>
+<body>
+<form action="#" th:action="@{/option-update}" th:objects="${option}" method="post">
+    <label for="id">ID</label>
+    <input readonly type="number" th:field="${option.id}" id="id" placeholder="ID">
+    <br/>
+    <label for="name">Name</label>
+    <input type="text" th:field="${option.name}" id="name" placeholder="Name">
+    <br/>
+    <label for="option.category.id">Category_id</label>
+    <input type="number" th:field="${option.category.id}" id="option.category.id" placeholder="Category">
+    <br/>
+    <input type="submit" value="Update Option">
+</form>
+</body>
+</html>

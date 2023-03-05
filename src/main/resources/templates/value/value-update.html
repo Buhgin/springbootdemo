@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Update value</title>
+</head>
+<body>
+<form action="#" th:action="@{/value-update}" th:objects="${value}" method="post">
+    <label for="id">ID</label>
+    <input readonly type="number" th:field="${value.id}" id="id" placeholder="ID">
+    <br/>
+    <label for="name">Name</label>
+    <input type="text" th:field="${value.name}" id="name" placeholder="Name">
+    <br/>
+    <label for="value.product.id">Product_id</label>
+    <input type="number" th:field="${value.product.id}" id="value.product.id" placeholder="Product_id">
+    <br/>
+    <label for="value.option.id">Option_id</label>
+    <input type="number" th:field="${value.option.id}" id="value.option.id" placeholder="Option_id">
+    <br/>
+    <input type="submit" value="Update Value">
+</form>
+</body>
+</html>
