@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>ProductList</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <style>
+        .centered {
+            margin: auto;
+            text-align: left;
+        }
+    </style>
+    </body>
+</head>
+<body>
+<div class="block-left">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-3">
+                <div th:switch="${options}">
+                    <h2 th:case="null">No option found!</h2>
+                    <div th:case="*">
+                        <h2>Option</h2>
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="option : ${options}">
+                                <td><a class="btn btn-link" th:href="@{option-product/{id}(id=${option.id})}" th:text="${option.name}"></a></td>
+
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <style>
+            .centered {
+                margin: auto;
+                text-align: center;
+            }
+        </style>
+        <div class="container mt-4">
+            <div class="col-md-6 centered">
+                <div class="block-right">
+                    <div th:switch="${products}">
+                        <h2 th:case="null">No product found!</h2>
+                        <div th:case="*">
+                            <h2>Product</h2>
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Price</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="product : ${products}">
+
+                                    <td><a class="btn btn-link" th:href="@{product-value/{id}(id=${product.id})}" th:text="${product.name}"></a></td>
+                                    <td th:text="${product.price}"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p><a class="btn btn-success" href="/categories"> Categories</a></p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

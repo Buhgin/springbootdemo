@@ -8,7 +8,7 @@
 </head>
 <form action="#" th:action="@{/option-products}" th:objects="${option}" method="get">
     <label for="name">Name</label>
-    <input readonly type="text" th:field="${product.name}" id="name" placeholder="Name">
+    <input readonly type="text" th:field="${option.name}" id="name" placeholder="Name">
     <br/>
 </form>
 
@@ -30,7 +30,7 @@
                         </thead>
                         <tbody>
                         <tr th:each="value : ${values}">
-                            <td th:text="${value.product.name}"></td>
+                            <td><a class="btn btn-link" th:href="@{product-value/{id}(id=${value.product.id})}" th:text="${value.product.name}"></a></td>
                             <td th:text="${value.product.price}"></td>
                         </tr>
                         </tbody>

@@ -57,14 +57,7 @@ public class ValueController {
        valueService.save(value);
         return "redirect:/values";
     }
-  /*  @GetMapping("/value-options{id}")
-    public String productInfo(@PathVariable Long id, Model model){
-        var value = valueService.selectId(id);
-        var option =value.getOption();
-        model.addAttribute("option",option);
-        return "redirect:/product-value";
-        }
-   */
+
 }
 
 

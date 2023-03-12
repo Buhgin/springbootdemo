@@ -10,8 +10,10 @@
             text-align: left;
         }
     </style>
+    </body>
 </head>
 <body>
+<div class="block-left">
 <div class="container">
 
     <div class="row">
@@ -28,13 +30,15 @@
                         </thead>
                         <tbody>
                         <tr th:each="option : ${options}">
-                            <td th:text="${option.name}"></td>
+                            <td><a class="btn btn-link" th:href="@{option-product/{id}(id=${option.id})}" th:text="${option.name}"></a></td>
+
                         </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
+    </div>
         <style>
             .centered {
                 margin: auto;
@@ -43,6 +47,7 @@
         </style>
         <div class="container mt-4">
         <div class="col-md-6 centered">
+            <div class="block-right">
             <div th:switch="${products}">
                 <h2 th:case="null">No product found!</h2>
                 <div th:case="*">
@@ -66,6 +71,8 @@
             </div>
         </div>
     </div>
+            <p><a class="btn btn-success" href="/categories"> Categories</a></p>
+</div>
 </div>
 </div>
 </body>

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import org.springframework.web.bind.annotation.RequestMapping;
 import ru.username.springbootdemo.model.Product;
 
 import ru.username.springbootdemo.service.ProductService;
@@ -61,22 +62,26 @@ public class ProductController {
         productService.save(product);
         return "redirect:/products";
     }
-    @GetMapping("/category-product/product-value/{id}")
+
+    @GetMapping()
     public String productInfo(@PathVariable Long id, Model model) {
         Product product = productService.selectId(id);
         var values = product.getValues();
           model.addAttribute("product", product);
         model.addAttribute("values", values);
 
-        return "redirect:product/product-value";
+        return "product/product-value";
     }
-    @GetMapping("product-value/{id}")
+
+    @GetMapping(value={"product-value/{id}",
+            "/category-product/product-value/{id}",
+            "/category-product/option-product/product-value/{id}"})
     public String productInfo1(@PathVariable Long id, Model model) {
         Product product = productService.selectId(id);
         var values = product.getValues();
         model.addAttribute("product", product);
         model.addAttribute("values", values);
 
-        return "redirect:product/product-value";
+        return "product/product-value";
     }
 }

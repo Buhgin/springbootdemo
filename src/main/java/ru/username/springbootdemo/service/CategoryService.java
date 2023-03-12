@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import ru.username.springbootdemo.model.Category;
 import ru.username.springbootdemo.repository.CategoryRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -29,6 +30,12 @@ public class CategoryService {
         return categoryRepository.findById(id).orElse(null);
     }
 
+public List<Category> getCategoriesByIds(List<Long> ids){
+     var categories = new ArrayList<Category>();
+    //ids.forEach(aLong -> categories.add(selectID(aLong)));
+        for(Long l : ids){categories.add(selectID(l));}
+return categories;
+    }
 
     public void delete(Long id) {
         categoryRepository.deleteById(id);

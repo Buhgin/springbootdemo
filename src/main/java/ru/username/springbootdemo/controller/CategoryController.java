@@ -3,15 +3,17 @@ package ru.username.springbootdemo.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import ru.username.springbootdemo.model.Category;
+import ru.username.springbootdemo.model.Option;
 import ru.username.springbootdemo.model.Product;
 import ru.username.springbootdemo.service.CategoryService;
 import ru.username.springbootdemo.service.ProductService;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Controller
 public class CategoryController {
@@ -74,6 +76,26 @@ public class CategoryController {
         return "category/category-product";
 
     }
+    @GetMapping("/process-categories")
+    public String categoryFilter(@RequestParam(name = "selectedCategories", required = true) List<Long> selectedCategoryIds, Model model) {
+        if(Objects.isNull(selectedCategoryIds)){
+            return  "redirect:/categories";
+        }
+
+        List<Category> categories = categoryService.getCategoriesByIds(selectedCategoryIds);
+        List<Option> options = categories.stream()
+                .flatMap(category -> category.getOptions().stream())
+                .toList();
+        List<Product> products = categories.stream()
+                .flatMap(category -> category.getProducts().stream())
+                .toList();
+        model.addAttribute("options", options);
+        model.addAttribute("products", products);
 
 
+        return "category/categories-products";
+
+
+
+    }
 }

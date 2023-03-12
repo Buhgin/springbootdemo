@@ -7,8 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import org.springframework.web.bind.annotation.RequestMapping;
 import ru.username.springbootdemo.model.Option;
-import ru.username.springbootdemo.model.Product;
+
 import ru.username.springbootdemo.service.OptionsService;
 
 import java.util.List;
@@ -57,14 +58,14 @@ public class OptionController {
         optionsService.save(option);
         return "redirect:/options";
     }
-
-    @GetMapping("/category-product/option-product/{id}")
-    public String productInfo(@PathVariable Long id, Model model) {
+@RequestMapping(value = {"/category-product/option-product/{id}"})
+    @GetMapping()
+    public String optionInfo(@PathVariable Long id, Model model) {
         var option = optionsService.selectId(id);
         var values = option.getValue();
         model.addAttribute("option", option);
         model.addAttribute("values", values);
 
-        return "redirect:option/option-product";
+        return "option/option-product";
     }
 }
